@@ -1,3 +1,5 @@
+import { cart } from "../data/cart.js"
+
 let productHTML = '';
 
 products.forEach ((product) => {
@@ -105,8 +107,10 @@ document.querySelectorAll('.js-add-to-cart')
         clearTimeout(previousTimeoutId);
       }
 
-      const timeOutId = setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         addedMessage.classList.remove('added-to-cart-visible');
       }, 1200);
+
+      addedMessageTimeouts[productId] = timeoutId;
     });
   });
