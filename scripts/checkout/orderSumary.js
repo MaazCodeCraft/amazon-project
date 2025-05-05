@@ -3,13 +3,13 @@ import {
     removeFromCart,
     calculateCartQuantity,
     updateQuantity,
-    updateDeliveryOption
+    updateDeliveryOption,
   } from '../../data/cart.js';
 
 import { products, getProduct } from "../../data/products.js";
 import { formateCurrency } from "../Utils/money.js";
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
-import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOption.js';
+import { deliveryOptions, getDeliveryOption, calculateDeliveryDate } from '../../data/deliveryOption.js';
 import { renderPaymentSummary } from './paymentSummary.js';
 
 
@@ -28,15 +28,7 @@ cart.forEach ((cartItem) => {
     const deliveryOption = getDeliveryOption(deliveryOptionId);
 
 
-    const today = dayjs();
-    const deliveryDate = today.add(
-        deliveryOption.deliveryDays,
-        'days'
-    );
-
-    const dateString = deliveryDate.format(
-        'dddd, MMMM D'
-    );
+    const dateString = calculateDeliveryDate(deliveryOption);
 
     cartSummaryHTML += `
         <div class="cart-item-container 
@@ -88,15 +80,8 @@ function deliveryOptionsHTML (matchingProduct, cartItem) {
     let HTML = '';
 
     deliveryOptions.forEach((deliveryOption) => {
-    const today = dayjs();
-    const deliveryDate = today.add(
-        deliveryOption.deliveryDays,
-        'days'
-    );
 
-    const dateString = deliveryDate.format(
-        'dddd, MMMM D'
-    );
+    const dateString = calculateDeliveryDate(deliveryOption);
 
     const priceCents = deliveryOption.priceCents
     === 0 
