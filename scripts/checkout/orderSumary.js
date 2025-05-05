@@ -8,11 +8,10 @@ import {
 
 import { products, getProduct } from "../../data/products.js";
 import { formateCurrency } from "../Utils/money.js";
-import {hello} from "https://unpkg.com/supersimpledev@1.0.1/hello.esm.js";
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOption.js';
+import { renderPaymentSummary } from './paymentSummary.js';
 
-hello();
 
 export function renderOrderSummary () {
 
@@ -143,7 +142,7 @@ document.querySelectorAll('.js-delete-link')
         );
 
         container.remove();
-        updateCartQuantity();
+        renderPaymentSummary ();
     });
     });
 
@@ -177,8 +176,8 @@ document.querySelectorAll('.js-save-link')
     
     const newQuantity = Number(quantityInput.value);
 
-    if (newQuantity < 0 || newQuantity >= 1000) {
-        alert('Quantity must be at least 0 and less than 1000');
+    if (newQuantity <= 0 || newQuantity >= 1000) {
+        alert('Quantity must be at least 1 and less than 1000');
         return;
     }
     
@@ -194,9 +193,10 @@ document.querySelectorAll('.js-save-link')
         `.js-quantity-label-${productId}`
     );
     quantityLabel.innerHTML = newQuantity;
-
+    renderPaymentSummary();
     updateCartQuantity();
     });
+    
     });
 
 document.querySelectorAll('.js-delivery-option')
@@ -205,6 +205,7 @@ document.querySelectorAll('.js-delivery-option')
         const { productId, deliveryOptionId } = element.dataset;
         updateDeliveryOption (productId, deliveryOptionId);
         renderOrderSummary ();
+        renderPaymentSummary();
     });
     });
 }
