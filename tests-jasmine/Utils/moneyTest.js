@@ -1,4 +1,4 @@
-import { formateCurrency } from "../scripts/Utils/money.js";
+import { formateCurrency } from "../../scripts/Utils/money.js";
 
 describe("test suite: formate currency", () => {
     describe("rounding", () => {
