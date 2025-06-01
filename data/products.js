@@ -33,6 +33,10 @@ class Product {
   getPrice () {
     return `$${formateCurrency(this.priceCents)}`;
   }
+
+  extraInfoHTML () {
+    return '';
+  }
 }
 
 let product1 = new Product (
@@ -53,6 +57,23 @@ let product1 = new Product (
   },
 );
 
+class Clothing extends Product {
+  sizeChartLink;
+
+  constructor(productDetails){
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfoHTML () {
+    // super.extraInfoHTML();
+    return `
+      <a href="${this.sizeChartLink}" target="_blank">
+        Size Chart
+      </a>
+    `
+  }
+}
 
 export const products = [
   {
@@ -734,5 +755,8 @@ export const products = [
     priceCents: 2999
   }
 ].map((productDetails) => {
+  if (productDetails.type === 'clothing') {
+    return new Clothing (productDetails);
+  }
   return new Product (productDetails);
 });
