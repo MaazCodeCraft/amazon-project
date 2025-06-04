@@ -8,6 +8,7 @@ import '../data/backend-practice.js';
 renderOrderSummary ();
 renderPaymentSummary();
 
+/*
 Promise.all([
     new Promise ((resolve) => {
         console.log('Promise');
@@ -21,6 +22,7 @@ Promise.all([
     console.log(values);
     console.log('Next Step!');
 });
+*/
 
 /*
 new Promise ((resolve) => {
