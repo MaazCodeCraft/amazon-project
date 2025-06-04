@@ -1,7 +1,7 @@
 # Amazon 
 
 🔗 **Live Demo:**  
-[🌐 View Project](https://maazcodecraft.github.io/amazon-project/)
+[🌐 View Project](https://maazcodecraft.github.io/amazon-project/amazon.html)
 
 ---
 
