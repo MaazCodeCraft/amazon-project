@@ -9,14 +9,17 @@
 
 ### Home Page
 ![Main Page](project-screenshots/main%20page.png)
+
 ---
 
 ### Checkout Page
 ![Checkout](project-screenshots/Checkout%20image.png)
+
 ---
 
 ### Order Confirmation
 ![Order](project-screenshots/Order%20Image.JPG)
+
 ---
 
 ### Track Order
