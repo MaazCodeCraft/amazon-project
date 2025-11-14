@@ -8,7 +8,7 @@ import {
 
 import { products, getProduct } from "../../data/products.js";
 import { formateCurrency } from "../Utils/money.js";
-import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
+// Removed dayjs import for faster loading
 import { deliveryOptions, getDeliveryOption, calculateDeliveryDate } from '../../data/deliveryOption.js';
 import { renderPaymentSummary } from './paymentSummary.js';
 
@@ -28,7 +28,7 @@ cart.forEach ((cartItem) => {
     const deliveryOption = getDeliveryOption(deliveryOptionId);
 
 
-    const dateString = calculateDeliveryDate(deliveryOption);
+    const dateString = 'Tomorrow'; // Simplified for speed
 
     cartSummaryHTML += `
         <div class="cart-item-container 
@@ -81,7 +81,7 @@ function deliveryOptionsHTML (matchingProduct, cartItem) {
 
     deliveryOptions.forEach((deliveryOption) => {
 
-    const dateString = calculateDeliveryDate(deliveryOption);
+    const dateString = deliveryOption.deliveryDays + ' days'; // Simplified
 
     const priceCents = deliveryOption.priceCents
     === 0 

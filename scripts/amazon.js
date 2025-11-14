@@ -178,6 +178,8 @@ function attachAddToCartListeners() {
   });
 }
 
+// Real-time search as user types
+searchBar.addEventListener('input', performSearch);
 searchButton.addEventListener('click', performSearch);
 searchBar.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {

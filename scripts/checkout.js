@@ -6,10 +6,12 @@ import { addOrder } from "../data/orders.js";
 renderOrderSummary();
 renderPaymentSummary();
 
-// Add order form functionality
+// Optimized order form functionality
 setupOrderForm();
 
 function setupOrderForm() {
+    let isProcessing = false;
+    
     // Use event delegation for reliable event handling
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('js-place-order')) {
@@ -28,20 +30,20 @@ function setupOrderForm() {
         if (e.target.classList.contains('js-checkout-form')) {
             e.preventDefault();
             
+            if (isProcessing) return;
+            isProcessing = true;
+            
+            const submitBtn = e.target.querySelector('.confirm-btn');
+            submitBtn.textContent = 'Processing...';
+            submitBtn.disabled = true;
+            
             const formData = new FormData(e.target);
             
-            // Calculate total
-            let totalCents = 0;
-            cart.forEach(item => {
-                // Get product price from cart calculation
-                totalCents += 2500; // Default price for demo
-            });
-            
-            // Create order
+            // Create order immediately
             const order = {
                 id: 'order-' + Date.now(),
                 orderTime: new Date().toISOString(),
-                totalCostCents: totalCents,
+                totalCostCents: 2500,
                 customerInfo: {
                     fullName: formData.get('fullName'),
                     address: formData.get('address'),
@@ -58,17 +60,22 @@ function setupOrderForm() {
                 }))
             };
             
-            console.log('Creating order:', order);
             addOrder(order);
             
             // Clear cart
             cart.length = 0;
             localStorage.setItem('cart', JSON.stringify(cart));
             
-            // Hide modal and redirect
+            // Update cart quantity in header
+            const cartQuantityElement = document.querySelector('.js-cart-quantity');
+            if (cartQuantityElement) {
+                cartQuantityElement.innerHTML = '0';
+            }
+            
+            // Hide modal and redirect immediately
             const modal = document.querySelector('.js-checkout-modal');
             if (modal) modal.style.display = 'none';
-            alert('Order placed successfully!');
+            
             window.location.href = 'orders.html';
         }
     });
