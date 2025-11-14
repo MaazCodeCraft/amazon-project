@@ -806,7 +806,13 @@ export const products = [
       stars: 4.5,
       count: 123
     },
-    priceCents: 2500
+    priceCents: 2500,
+    keywords: [
+      "backpack",
+      "bags",
+      "school",
+      "travel"
+    ]
   },
   {
     id: "id2",
@@ -816,7 +822,13 @@ export const products = [
       stars: 5,
       count: 456
     },
-    priceCents: 2999
+    priceCents: 2999,
+    keywords: [
+      "umbrella",
+      "rain",
+      "weather",
+      "accessories"
+    ]
   }
 ].map((productDetails) => {
   if (productDetails.type === 'clothing') {

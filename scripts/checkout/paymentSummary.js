@@ -2,19 +2,18 @@ import { cart } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOption.js";
 import { formateCurrency } from "../Utils/money.js";
-import { addOrder  } from "../../data/orders.js";
+import { addOrder } from "../../data/orders.js";
 
-export function renderPaymentSummary () {
-
+export function renderPaymentSummary() {
     let productPriceCents = 0;
     let shippingPriceCents = 0;
 
-    cart.forEach ((cartItem) => {
-        const product = getProduct (cartItem.productId);
+    cart.forEach((cartItem) => {
+        const product = getProduct(cartItem.productId);
         productPriceCents += product.priceCents * cartItem.quantity;
 
-        const deliveryOption = getDeliveryOption (cartItem.deliveryOptionId);
-        shippingPriceCents += deliveryOption.priceCents
+        const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
+        shippingPriceCents += deliveryOption.priceCents;
     });
 
     const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
@@ -22,9 +21,8 @@ export function renderPaymentSummary () {
     const totalCents = totalBeforeTaxCents + taxCents;
 
     let cartQuantity = 0;
-
     cart.forEach((cartItem) => {
-      cartQuantity += cartItem.quantity;
+        cartQuantity += cartItem.quantity;
     });
 
     const paymentSummaryHTML = `
@@ -32,69 +30,45 @@ export function renderPaymentSummary () {
             Order Summary
         </div>
 
-          <div class="payment-summary-row">
+        <div class="payment-summary-row">
             <div>Items (${cartQuantity}):</div>
             <div class="payment-summary-money">
                 $${formateCurrency(productPriceCents)}
             </div>
-          </div>
+        </div>
 
-          <div class="payment-summary-row">
+        <div class="payment-summary-row">
             <div>Shipping &amp; handling:</div>
             <div class="payment-summary-money">
                 $${formateCurrency(shippingPriceCents)}
             </div>
-          </div>
+        </div>
 
-          <div class="payment-summary-row subtotal-row">
+        <div class="payment-summary-row subtotal-row">
             <div>Total before tax:</div>
             <div class="payment-summary-money">
                 $${formateCurrency(totalBeforeTaxCents)}
             </div>
-          </div>
+        </div>
 
-          <div class="payment-summary-row">
+        <div class="payment-summary-row">
             <div>Estimated tax (10%):</div>
             <div class="payment-summary-money">
                 $${formateCurrency(taxCents)}
             </div>
-          </div>
+        </div>
 
-          <div class="payment-summary-row total-row">
+        <div class="payment-summary-row total-row">
             <div>Order total:</div>
             <div class="payment-summary-money">
                 $${formateCurrency(totalCents)}
             </div>
-          </div>
+        </div>
 
-          <button class="place-order-button button-primary
-            js-place-order">
+        <button class="place-order-button button-primary js-place-order" ${cartQuantity === 0 ? 'disabled' : ''}>
             Place your order
-          </button>
+        </button>
     `;
 
-    document.querySelector('.js-payment-summary')
-        .innerHTML = paymentSummaryHTML;
-
-    document.querySelector('.js-place-order')
-      .addEventListener('click', async() => {
-        try {
-          const response = await fetch("https://supersimplebackend.dev/orders", {
-            method: "POST", 
-            headers: {
-              'Content-Type': "application/json"
-            }, 
-            body: JSON.stringify({
-              cart: cart
-            })
-          });
-  
-          const order = await response.json();
-          // console.log(order);
-          addOrder(order);
-        } catch (error) {
-          console.log('unexpected error. try again later');
-        }
-        window.location.href = 'orders.html';
-      });
+    document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
 }

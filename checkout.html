@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="styles/shared/general.css">
     <link rel="stylesheet" href="styles/pages/checkout/checkout-header.css">
     <link rel="stylesheet" href="styles/pages/checkout/checkout.css">
+    <link rel="stylesheet" href="styles/pages/checkout/modal.css">
   </head>
   <body>
     <div class="checkout-header">
@@ -47,6 +48,41 @@
 
         <div class="payment-summary js-payment-summary">
         </div>
+      </div>
+    </div>
+    
+    <!-- Checkout Form Modal -->
+    <div class="checkout-modal js-checkout-modal" style="display: none;">
+      <div class="modal-content">
+        <h2>Complete Your Order</h2>
+        <form class="checkout-form js-checkout-form">
+          <div class="form-section">
+            <h3>Shipping Address</h3>
+            <input type="text" name="fullName" placeholder="Full Name" required>
+            <input type="text" name="address" placeholder="Address" required>
+            <input type="text" name="city" placeholder="City" required>
+            <input type="text" name="zipCode" placeholder="ZIP Code" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+          </div>
+          
+          <div class="form-section">
+            <h3>Payment Method</h3>
+            <select name="paymentMethod" required>
+              <option value="">Select Payment Method</option>
+              <option value="credit">Credit Card</option>
+              <option value="debit">Debit Card</option>
+              <option value="paypal">PayPal</option>
+            </select>
+            <input type="text" name="cardNumber" placeholder="Card Number (Demo)" required>
+            <input type="text" name="expiryDate" placeholder="MM/YY" required>
+            <input type="text" name="cvv" placeholder="CVV" required>
+          </div>
+          
+          <div class="form-buttons">
+            <button type="button" class="cancel-btn js-cancel-order">Cancel</button>
+            <button type="submit" class="confirm-btn">Confirm Order</button>
+          </div>
+        </form>
       </div>
     </div>
 

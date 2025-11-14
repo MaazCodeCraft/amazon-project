@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Orders</title>
+</head>
+<body>
+    <h1>Clear All Orders</h1>
+    <button onclick="clearOrders()">Clear All Orders</button>
+    <div id="result"></div>
+
+    <script>
+        function clearOrders() {
+            localStorage.removeItem('orders');
+            localStorage.removeItem('cart');
+            document.getElementById('result').innerHTML = 'All orders and cart cleared!';
+        }
+    </script>
+</body>
+</html>
