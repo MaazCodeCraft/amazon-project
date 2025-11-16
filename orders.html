@@ -82,12 +82,15 @@
 
     <script>
       function clearAllOrders() {
-        if (confirm("Clear delivered orders (older than 1 day)?")) {
+        if (confirm("Clear completed/delivered orders?")) {
           const orders = JSON.parse(localStorage.getItem("orders")) || [];
           const activeOrders = orders.filter((order) => {
-            const orderDate = new Date(order.orderTime);
-            const daysPassed = (Date.now() - orderDate.getTime()) / (1000 * 60 * 60 * 24);
-            return daysPassed < 0; // Clear all orders for testing
+            // Check if order is delivered (past estimated delivery time)
+            const isDelivered = order.products.some(product => {
+              const deliveryTime = new Date(product.estimatedDeliveryTime);
+              return Date.now() > deliveryTime.getTime();
+            });
+            return !isDelivered; // Keep only non-delivered orders
           });
           localStorage.setItem("orders", JSON.stringify(activeOrders));
           location.reload();
