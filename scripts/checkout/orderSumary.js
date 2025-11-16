@@ -27,8 +27,10 @@ cart.forEach ((cartItem) => {
 
     const deliveryOption = getDeliveryOption(deliveryOptionId);
 
-
-    const dateString = 'Tomorrow'; // Simplified for speed
+    // Calculate delivery date based on delivery option
+    const today = new Date();
+    const deliveryDate = new Date(today.getTime() + deliveryOption.deliveryDays * 24 * 60 * 60 * 1000);
+    const dateString = deliveryDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
 
     cartSummaryHTML += `
         <div class="cart-item-container 
@@ -81,7 +83,10 @@ function deliveryOptionsHTML (matchingProduct, cartItem) {
 
     deliveryOptions.forEach((deliveryOption) => {
 
-    const dateString = deliveryOption.deliveryDays + ' days'; // Simplified
+    // Calculate proper delivery date for each option
+    const today = new Date();
+    const deliveryDate = new Date(today.getTime() + deliveryOption.deliveryDays * 24 * 60 * 60 * 1000);
+    const dateString = deliveryDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
 
     const priceCents = deliveryOption.priceCents
     === 0 
