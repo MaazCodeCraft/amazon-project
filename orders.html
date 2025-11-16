@@ -6,35 +6,39 @@
     <!-- This code is needed for responsive design to work.
       (Responsive design = make the website look good on
       smaller screen sizes like a phone or a tablet). -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Load a font called Roboto from Google Fonts. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Here are the CSS files for this page. -->
-    <link rel="stylesheet" href="styles/shared/general.css">
-    <link rel="stylesheet" href="styles/shared/amazon-header.css">
-    <link rel="stylesheet" href="styles/shared/search.css">
-    <link rel="stylesheet" href="styles/pages/orders.css">
+    <link rel="stylesheet" href="styles/shared/general.css" />
+    <link rel="stylesheet" href="styles/shared/amazon-header.css" />
+    <link rel="stylesheet" href="styles/shared/search.css" />
+    <link rel="stylesheet" href="styles/pages/orders.css" />
   </head>
   <body>
     <div class="amazon-header">
       <div class="amazon-header-left-section">
         <a href="amazon.html" class="header-link">
-          <img class="amazon-logo"
-            src="images/amazon-logo-white.png">
-          <img class="amazon-mobile-logo"
-            src="images/amazon-mobile-logo-white.png">
+          <img class="amazon-logo" src="images/amazon-logo-white.png" />
+          <img
+            class="amazon-mobile-logo"
+            src="images/amazon-mobile-logo-white.png"
+          />
         </a>
       </div>
 
       <div class="amazon-header-middle-section">
-        <input class="search-bar" type="text" placeholder="Search">
+        <input class="search-bar" type="text" placeholder="Search" />
 
         <button class="search-button">
-          <img class="search-icon" src="images/icons/search-icon.png">
+          <img class="search-icon" src="images/icons/search-icon.png" />
         </button>
       </div>
 
@@ -45,7 +49,7 @@
         </a>
 
         <a class="cart-link header-link" href="checkout.html">
-          <img class="cart-icon" src="images/icons/cart-icon.png">
+          <img class="cart-icon" src="images/icons/cart-icon.png" />
           <div class="cart-quantity">3</div>
           <div class="cart-text">Cart</div>
         </a>
@@ -54,9 +58,19 @@
 
     <div class="main">
       <div class="page-title">Your Orders</div>
-      
-      <div style="text-align: center; margin-bottom: 20px;">
-        <button onclick="clearAllOrders()" style="background: #d13212; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;">
+
+      <div style="text-align: center; margin-bottom: 20px">
+        <button
+          onclick="clearAllOrders()"
+          style="
+            background: #d13212;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+          "
+        >
           Clear Delivered Orders
         </button>
       </div>
@@ -65,22 +79,23 @@
         <!-- Orders will be dynamically loaded here -->
       </div>
     </div>
-    
+
     <script>
       function clearAllOrders() {
-        if (confirm('Clear only delivered orders?')) {
-          const orders = JSON.parse(localStorage.getItem('orders')) || [];
-          const activeOrders = orders.filter(order => {
+        if (confirm("Clear only delivered orders?")) {
+          const orders = JSON.parse(localStorage.getItem("orders")) || [];
+          const activeOrders = orders.filter((order) => {
             const orderDate = new Date(order.orderTime);
-            const daysPassed = (Date.now() - orderDate.getTime()) / (1000 * 60 * 60 * 24);
-            return daysPassed < 7; // Keep orders less than 7 days old (not delivered yet)
+            const daysPassed =
+              (Date.now() - orderDate.getTime()) / (1000 * 60 * 60 * 24);
+            return daysPassed <= 7; // Keep orders 7 days or less (not delivered yet)
           });
-          localStorage.setItem('orders', JSON.stringify(activeOrders));
+          localStorage.setItem("orders", JSON.stringify(activeOrders));
           location.reload();
         }
       }
     </script>
-    
+
     <script type="module" src="scripts/orders.js"></script>
   </body>
 </html>
