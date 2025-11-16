@@ -5,6 +5,47 @@
 
 ---
 
+## 📱 **Screenshots**
+
+### Home Page
+
+![Main Page](project-screenshots/main%20page.png)
+_Product browsing with real-time search and cart management_
+
+---
+
+### Checkout Page
+
+![Checkout](project-screenshots/Checkout%20image.png)
+_Order review with delivery options and pricing_
+
+---
+
+### Order Confirmation
+
+![Order](project-screenshots/Order%20Image.JPG)
+_Complete order history with customer details_
+
+---
+
+### Track Order
+
+![Track Order](project-screenshots/Track%20Order.JPG)
+_Real-time order tracking with progress visualization_
+
+---
+
+### Payment COnfirmation
+
+![Track Order](project-screenshots/5.JPG)
+_Real-time order tracking with progress visualization_
+
+---
+
+## Project Demo Video
+
+[📥 Download Demo Video](project-screenshots/project-video.mp4)
+
 ## 🚀 Features
 
 ### 🛍️ **Shopping Experience**
@@ -111,43 +152,6 @@ amazon-project/
 - **Reorder Items**: Quick "Buy it again" functionality
 - **Track Packages**: Real-time delivery status and progress
 - **Clean History**: Remove delivered items while keeping active orders
-
----
-
-## 📱 **Screenshots**
-
-### Home Page
-
-![Main Page](project-screenshots/main%20page.png)
-_Product browsing with real-time search and cart management_
-
----
-
-### Checkout Page
-
-![Checkout](project-screenshots/Checkout%20image.png)
-_Order review with delivery options and pricing_
-
----
-
-### Order Confirmation
-
-![Order](project-screenshots/Order%20Image.JPG)
-_Complete order history with customer details_
-
----
-
-### Track Order
-
-![Track Order](project-screenshots/Track%20Order.JPG)
-_Real-time order tracking with progress visualization_
-
----
-
-### Payment COnfirmation
-
-![Track Order](project-screenshots/5.JPG)
-_Real-time order tracking with progress visualization_
 
 ---
 
